@@ -8,7 +8,7 @@ public record Balance(BigDecimal value) {
         this(BigDecimal.ZERO);
     }
 
-    public Balance add(final Amount amountTen) {
-        return new Balance(value.add(amountTen.value()));
+    public Balance add(final Amount amount) {
+        return new Balance(value.add(amount.value()));
     }
 }
