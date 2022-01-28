@@ -34,4 +34,12 @@ class AccountTest {
         assertThatIllegalArgumentException().isThrownBy(() -> account.deposit(negativeAmount))
                 .withMessage(ACCOUNT_DEPOSIT_AMOUNT_NOT_NEGATIVE);
     }
+
+    @Test
+    void should_account_have_balance_to_ten_when_deposit_then_withdraw_amount_of_ten() {
+        final Account account = new Account();
+        account.deposit(AMOUNT_TEN);
+        account.withdraw(AMOUNT_TEN);
+        assertThat(account.getBalance()).isEqualTo(BALANCE_ZERO);
+    }
 }

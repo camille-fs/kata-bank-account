@@ -29,4 +29,11 @@ class BalanceTest {
         balance = balance.add(AMOUNT_TEN);
         assertThat(balance).isEqualTo(BALANCE_TEN);
     }
+
+    @Test
+    void should_balance_have_value_zero_when_created_with_ten_then_subtract_ten_amount() {
+        Balance balance = BALANCE_TEN;
+        balance = balance.subtract(AMOUNT_TEN);
+        assertThat(balance).isEqualTo(BALANCE_ZERO);
+    }
 }

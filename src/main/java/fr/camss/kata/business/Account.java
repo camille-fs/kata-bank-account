@@ -22,4 +22,8 @@ public class Account {
         checkAmountNotNegative(amount);
         balance = balance.add(amount);
     }
+
+    public void withdraw(final Amount amount) {
+        balance = balance.subtract(amount);
+    }
 }
