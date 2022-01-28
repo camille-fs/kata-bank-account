@@ -4,9 +4,13 @@ import lombok.Getter;
 
 @Getter
 public class Account {
-    private final Balance balance;
+    private Balance balance;
 
     public Account() {
         this.balance = new Balance();
+    }
+
+    public void deposit(final Amount amountTen) {
+        balance = balance.add(amountTen);
     }
 }
