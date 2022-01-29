@@ -2,7 +2,7 @@ package fr.camss.kata.business;
 
 import lombok.Getter;
 
-import static fr.camss.kata.business.common.exception.ExceptionMessages.ACCOUNT_DEPOSIT_AMOUNT_NOT_NEGATIVE;
+import static fr.camss.kata.business.common.exception.ExceptionMessages.ACCOUNT_DEPOSIT_WITHDRAW_AMOUNT_NOT_NEGATIVE;
 
 @Getter
 public class Account {
@@ -14,7 +14,7 @@ public class Account {
 
     private static void checkAmountNotNegative(final Amount amount) {
         if (amount.isNegative()) {
-            throw new IllegalArgumentException(ACCOUNT_DEPOSIT_AMOUNT_NOT_NEGATIVE);
+            throw new IllegalArgumentException(ACCOUNT_DEPOSIT_WITHDRAW_AMOUNT_NOT_NEGATIVE);
         }
     }
 
@@ -24,6 +24,7 @@ public class Account {
     }
 
     public void withdraw(final Amount amount) {
+        checkAmountNotNegative(amount);
         balance = balance.subtract(amount);
     }
 }
