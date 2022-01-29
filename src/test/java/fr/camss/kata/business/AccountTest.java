@@ -3,6 +3,7 @@ package fr.camss.kata.business;
 import org.junit.jupiter.api.Test;
 
 import static fr.camss.kata.business.common.exception.ExceptionMessages.ACCOUNT_DEPOSIT_WITHDRAW_AMOUNT_NOT_NEGATIVE;
+import static fr.camss.kata.business.common.exception.ExceptionMessages.WITHDRAW_AMOUNT_EXCEEDS_BALANCE;
 import static fr.camss.kata.business.helper.DataSetHelper.BALANCE_TEN;
 import static fr.camss.kata.business.helper.DataSetHelper.BALANCE_ZERO;
 import static fr.camss.kata.business.helper.DataSetHelper.NEGATIVE_AMOUNT;
@@ -49,5 +50,13 @@ class AccountTest {
 
         assertThatIllegalArgumentException().isThrownBy(() -> account.withdraw(NEGATIVE_AMOUNT))
                 .withMessage(ACCOUNT_DEPOSIT_WITHDRAW_AMOUNT_NOT_NEGATIVE);
+    }
+
+    @Test
+    void should_withdraw_from_account_be_rejected_when_amount_is_greater_than_balance() {
+        final Account account = new Account();
+
+        assertThatIllegalArgumentException().isThrownBy(() -> account.withdraw(TEN_AMOUNT))
+                .withMessage(WITHDRAW_AMOUNT_EXCEEDS_BALANCE);
     }
 }
