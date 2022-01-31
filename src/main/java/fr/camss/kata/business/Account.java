@@ -1,6 +1,8 @@
 package fr.camss.kata.business;
 
 import fr.camss.kata.business.operation.Operation;
+import fr.camss.kata.business.statement.Statement;
+import fr.camss.kata.business.statement.StatementPrinter;
 import lombok.Getter;
 
 import java.time.LocalDateTime;
@@ -37,6 +39,10 @@ public class Account {
         checkAmountIsNotGreaterThanBalance(amount);
         balance = balance.subtract(amount);
         statement = statement.add(new Operation(WITHDRAWAL, amount, date), balance);
+    }
+
+    public void printStatement(final StatementPrinter statementPrinter) {
+        statementPrinter.print(statement);
     }
 
     private void checkAmountIsNotGreaterThanBalance(final Amount amount) {

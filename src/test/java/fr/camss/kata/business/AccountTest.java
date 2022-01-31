@@ -1,6 +1,12 @@
 package fr.camss.kata.business;
 
+import fr.camss.kata.business.statement.Statement;
+import fr.camss.kata.business.statement.StatementLine;
+import fr.camss.kata.business.statement.StatementPrinter;
 import org.junit.jupiter.api.Test;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import static fr.camss.kata.business.common.exception.ExceptionMessages.ACCOUNT_DEPOSIT_WITHDRAW_AMOUNT_NOT_NEGATIVE;
 import static fr.camss.kata.business.common.exception.ExceptionMessages.WITHDRAW_AMOUNT_EXCEEDS_BALANCE;
@@ -81,5 +87,26 @@ class AccountTest {
         assertThat(account.getStatement().getStatementLines()).hasSize(2)
                 .contains(STATEMENT_LINE_DEPOSIT_TEN_AMOUNT)
                 .contains(new StatementLine(WITHDRAW_TEN_AMOUNT_OPERATION, BALANCE_ZERO));
+    }
+
+    @Test
+    void should_print_statement_with_balance_ten_when_print_from_account_after_ten_deposit() {
+        final Account account = new Account();
+        account.deposit(TEN_AMOUNT, DATE_2022_01_31);
+        final FakeStatementPrinter fakeStatementPrinter = new FakeStatementPrinter();
+
+        account.printStatement(fakeStatementPrinter);
+
+        assertThat(fakeStatementPrinter.statementLines).containsExactly(STATEMENT_LINE_DEPOSIT_TEN_AMOUNT);
+    }
+
+    private static class FakeStatementPrinter implements StatementPrinter {
+
+        private List<StatementLine> statementLines;
+
+        @Override
+        public void print(final Statement statement) {
+            statementLines = new ArrayList<>(statement.statementLines());
+        }
     }
 }

@@ -2,8 +2,8 @@ package fr.camss.kata.business.helper;
 
 import fr.camss.kata.business.Amount;
 import fr.camss.kata.business.Balance;
-import fr.camss.kata.business.StatementLine;
 import fr.camss.kata.business.operation.Operation;
+import fr.camss.kata.business.statement.StatementLine;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 

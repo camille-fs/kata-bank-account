@@ -1,5 +1,6 @@
-package fr.camss.kata.business;
+package fr.camss.kata.business.statement;
 
+import fr.camss.kata.business.Balance;
 import fr.camss.kata.business.operation.Operation;
 
 import java.util.ArrayList;
@@ -11,7 +12,7 @@ public record Statement(List<StatementLine> statementLines) {
         this(new ArrayList<>());
     }
 
-    List<StatementLine> getStatementLines() {
+    public List<StatementLine> getStatementLines() {
         return statementLines;
     }
 
