@@ -3,6 +3,7 @@ package fr.camss.kata.business;
 import fr.camss.kata.business.operation.Operation;
 import lombok.Getter;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,8 +14,8 @@ import static fr.camss.kata.business.operation.OperationType.WITHDRAWAL;
 
 @Getter
 public class Account {
-    private Balance balance;
     private final List<Operation> operations = new ArrayList<>();
+    private Balance balance;
 
     public Account() {
         this.balance = new Balance();
@@ -26,17 +27,17 @@ public class Account {
         }
     }
 
-    public void deposit(final Amount amount) {
+    public void deposit(final Amount amount, final LocalDateTime date) {
         checkAmountIsNotNegative(amount);
         balance = balance.add(amount);
-        operations.add(new Operation(DEPOSIT, amount));
+        operations.add(new Operation(DEPOSIT, amount, date));
     }
 
-    public void withdraw(final Amount amount) {
+    public void withdraw(final Amount amount, final LocalDateTime date) {
         checkAmountIsNotNegative(amount);
         checkAmountIsNotGreaterThanBalance(amount);
         balance = balance.subtract(amount);
-        operations.add(new Operation(WITHDRAWAL, amount));
+        operations.add(new Operation(WITHDRAWAL, amount, date));
     }
 
     private void checkAmountIsNotGreaterThanBalance(final Amount amount) {

@@ -7,15 +7,17 @@ import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 
 import static fr.camss.kata.business.operation.OperationType.DEPOSIT;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public final class DataSetHelper {
 
+    public static final LocalDateTime DATE_2022_01_31 = LocalDateTime.of(2022, 1, 31, 0, 0);
     public static final Balance BALANCE_ZERO = new Balance(BigDecimal.ZERO);
     public static final Balance BALANCE_TEN = new Balance(BigDecimal.TEN);
     public static final Amount TEN_AMOUNT = new Amount(BigDecimal.TEN);
     public static final Amount NEGATIVE_AMOUNT = new Amount(BigDecimal.TEN.negate());
-    public static final Operation DEPOSIT_TEN_AMOUNT_OPERATION = new Operation(DEPOSIT, TEN_AMOUNT);
+    public static final Operation DEPOSIT_TEN_AMOUNT_OPERATION = new Operation(DEPOSIT, TEN_AMOUNT, DATE_2022_01_31);
 }
