@@ -1,6 +1,5 @@
 package fr.camss.kata.business;
 
-import fr.camss.kata.business.operation.Operation;
 import org.junit.jupiter.api.Test;
 
 import static fr.camss.kata.business.common.exception.ExceptionMessages.ACCOUNT_DEPOSIT_WITHDRAW_AMOUNT_NOT_NEGATIVE;
@@ -8,10 +7,10 @@ import static fr.camss.kata.business.common.exception.ExceptionMessages.WITHDRAW
 import static fr.camss.kata.business.helper.DataSetHelper.BALANCE_TEN;
 import static fr.camss.kata.business.helper.DataSetHelper.BALANCE_ZERO;
 import static fr.camss.kata.business.helper.DataSetHelper.DATE_2022_01_31;
-import static fr.camss.kata.business.helper.DataSetHelper.DEPOSIT_TEN_AMOUNT_OPERATION;
 import static fr.camss.kata.business.helper.DataSetHelper.NEGATIVE_AMOUNT;
+import static fr.camss.kata.business.helper.DataSetHelper.STATEMENT_LINE_DEPOSIT_TEN_AMOUNT;
 import static fr.camss.kata.business.helper.DataSetHelper.TEN_AMOUNT;
-import static fr.camss.kata.business.operation.OperationType.WITHDRAWAL;
+import static fr.camss.kata.business.helper.DataSetHelper.WITHDRAW_TEN_AMOUNT_OPERATION;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
@@ -65,22 +64,22 @@ class AccountTest {
     }
 
     @Test
-    void should_account_have_deposit_operation_when_deposit_on_account() {
+    void should_account_have_statement_line_with_deposit_operation_when_deposit_on_account() {
         final Account account = new Account();
         account.deposit(TEN_AMOUNT, DATE_2022_01_31);
 
-        assertThat(account.getOperations()).hasSize(1)
-                .contains(DEPOSIT_TEN_AMOUNT_OPERATION);
+        assertThat(account.getStatement().getStatementLines()).hasSize(1)
+                .contains(STATEMENT_LINE_DEPOSIT_TEN_AMOUNT);
     }
 
     @Test
-    void should_account_have_withdrawal_and_deposit_operation_when_deposit_then_withdraw_from_account() {
+    void should_account_have_statement_line_with_withdrawal_and_deposit_operation_when_deposit_then_withdraw_from_account() {
         final Account account = new Account();
         account.deposit(TEN_AMOUNT, DATE_2022_01_31);
         account.withdraw(TEN_AMOUNT, DATE_2022_01_31);
 
-        assertThat(account.getOperations()).hasSize(2)
-                .contains(DEPOSIT_TEN_AMOUNT_OPERATION)
-                .contains(new Operation(WITHDRAWAL, TEN_AMOUNT, DATE_2022_01_31));
+        assertThat(account.getStatement().getStatementLines()).hasSize(2)
+                .contains(STATEMENT_LINE_DEPOSIT_TEN_AMOUNT)
+                .contains(new StatementLine(WITHDRAW_TEN_AMOUNT_OPERATION, BALANCE_ZERO));
     }
 }
