@@ -12,10 +12,6 @@ public record Statement(List<StatementLine> statementLines) {
         this(new ArrayList<>());
     }
 
-    public List<StatementLine> getStatementLines() {
-        return statementLines;
-    }
-
     public Statement add(final Operation operation, final Balance balance) {
         final List<StatementLine> newStatementLines = new ArrayList<>(statementLines);
         newStatementLines.add(new StatementLine(operation, balance));

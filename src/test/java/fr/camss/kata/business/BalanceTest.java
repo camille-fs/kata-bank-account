@@ -4,9 +4,9 @@ import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;
 
-import static fr.camss.kata.business.helper.DataSetHelper.BALANCE_TEN;
-import static fr.camss.kata.business.helper.DataSetHelper.BALANCE_ZERO;
-import static fr.camss.kata.business.helper.DataSetHelper.TEN_AMOUNT;
+import static fr.camss.kata.business.helper.AccountDatasetHelper.BALANCE_TEN;
+import static fr.camss.kata.business.helper.AccountDatasetHelper.BALANCE_ZERO;
+import static fr.camss.kata.business.helper.AccountDatasetHelper.TEN_AMOUNT;
 import static org.assertj.core.api.Assertions.assertThat;
 
 class BalanceTest {
