@@ -3,8 +3,6 @@ package fr.camss.kata.business.helper;
 import fr.camss.kata.business.operation.Operation;
 import fr.camss.kata.business.statement.Statement;
 import fr.camss.kata.business.statement.StatementLine;
-import lombok.AccessLevel;
-import lombok.NoArgsConstructor;
 
 import java.util.List;
 
@@ -16,7 +14,6 @@ import static fr.camss.kata.business.helper.AccountDatasetHelper.TEN_AMOUNT;
 import static fr.camss.kata.business.operation.OperationType.DEPOSIT;
 import static fr.camss.kata.business.operation.OperationType.WITHDRAWAL;
 
-@NoArgsConstructor(access = AccessLevel.PRIVATE)
 public final class StatementDatasetHelper {
 
     public static final Operation DEPOSIT_TEN_AMOUNT_OPERATION = new Operation(DEPOSIT, TEN_AMOUNT, DATE_2022_01_30);
@@ -26,4 +23,7 @@ public final class StatementDatasetHelper {
     public static final List<StatementLine> DEPOSIT_WITHDRAW_TEN_AMOUNT_STATEMENT_LINES =
             List.of(DEPOSIT_TEN_AMOUNT_STATEMENT_LINE, WITHDRAW_TEN_AMOUNT_STATEMENT_LINE);
     public static final Statement DEPOSIT_WITHDRAW_TEN_AMOUNT_STATEMENT = new Statement(DEPOSIT_WITHDRAW_TEN_AMOUNT_STATEMENT_LINES);
+
+    private StatementDatasetHelper() {
+    }
 }

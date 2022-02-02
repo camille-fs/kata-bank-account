@@ -15,4 +15,8 @@ public record Balance(BigDecimal value) {
     public Balance subtract(final Amount amount) {
         return new Balance(value.subtract(amount.value()));
     }
+
+    public boolean has(final Amount amount) {
+        return value.compareTo(amount.value()) >= 0;
+    }
 }

@@ -8,13 +8,11 @@ import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
 import java.util.List;
 
-import static fr.camss.kata.business.common.exception.ExceptionMessages.ACCOUNT_DEPOSIT_WITHDRAW_AMOUNT_NOT_NEGATIVE;
 import static fr.camss.kata.business.common.exception.ExceptionMessages.WITHDRAW_AMOUNT_EXCEEDS_BALANCE;
 import static fr.camss.kata.business.helper.AccountDatasetHelper.BALANCE_TEN;
 import static fr.camss.kata.business.helper.AccountDatasetHelper.BALANCE_ZERO;
 import static fr.camss.kata.business.helper.AccountDatasetHelper.DATE_2022_01_30;
 import static fr.camss.kata.business.helper.AccountDatasetHelper.DATE_2022_01_31;
-import static fr.camss.kata.business.helper.AccountDatasetHelper.NEGATIVE_AMOUNT;
 import static fr.camss.kata.business.helper.AccountDatasetHelper.TEN_AMOUNT;
 import static fr.camss.kata.business.helper.StatementDatasetHelper.DEPOSIT_TEN_AMOUNT_STATEMENT_LINE;
 import static fr.camss.kata.business.helper.StatementDatasetHelper.WITHDRAW_TEN_AMOUNT_STATEMENT_LINE;
@@ -37,14 +35,6 @@ class AccountTest {
     }
 
     @Test
-    void should_deposit_on_account_be_rejected_when_amount_is_negative() {
-        final Account account = new Account();
-
-        assertThatIllegalArgumentException().isThrownBy(() -> account.deposit(NEGATIVE_AMOUNT, DATE_2022_01_30))
-                .withMessage(ACCOUNT_DEPOSIT_WITHDRAW_AMOUNT_NOT_NEGATIVE);
-    }
-
-    @Test
     void should_account_have_balance_to_ten_when_deposit_then_withdraw_amount_of_ten() {
         final Account account = new Account();
         account.deposit(TEN_AMOUNT, DATE_2022_01_30);
@@ -52,14 +42,6 @@ class AccountTest {
         account.withdraw(TEN_AMOUNT, DATE_2022_01_31);
 
         assertThat(account.getBalance()).isEqualTo(BALANCE_ZERO);
-    }
-
-    @Test
-    void should_withdraw_from_account_be_rejected_when_amount_is_negative() {
-        final Account account = new Account();
-
-        assertThatIllegalArgumentException().isThrownBy(() -> account.withdraw(NEGATIVE_AMOUNT, DATE_2022_01_31))
-                .withMessage(ACCOUNT_DEPOSIT_WITHDRAW_AMOUNT_NOT_NEGATIVE);
     }
 
     @Test
